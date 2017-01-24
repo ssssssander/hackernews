@@ -6,6 +6,7 @@
             <a href="{{ route('index') }}">← back to overview</a>
         </div>
         @include('errors')
+        @include('success')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">{{ $article->title }}
             @unless (Auth::guest())
@@ -35,7 +36,7 @@
                     </ul>
                 </div>
                 @if (Auth::guest())
-                    <div>   
+                    <div>
                         <p>You need to be <a href="{{ url('/login') }}">logged in</a> to comment</p>
                     </div>
                 @else

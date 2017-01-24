@@ -34,6 +34,8 @@ class ArticlesController extends Controller
         $article->points = 0;
         $article->save();
 
+        session()->flash('success', 'article "' . $article->title . '" created succesfully');
+
         return redirect()->route('index');
     }
 
@@ -43,8 +45,10 @@ class ArticlesController extends Controller
 
     public function update(Request $request, Article $article) {
         $this->validate($request, ['title' => 'required|max:255', 'url' => 'required|max:1000|active_url']);
-        
+
         $article->update($request->all());
+
+        session()->flash('success', 'article "' . $article->title . '" edited succesfully');
 
         return redirect()->route('index');
     }

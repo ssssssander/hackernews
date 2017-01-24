@@ -6,6 +6,7 @@
             <a href="{{ route('show_article', ['article' => $comment->article_id]) }}">← back to comments</a>
         </div>
         @include('errors')
+        @include('success')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment
             <a class="btn btn-danger btn-xs edit-btn pull-right" href="#">

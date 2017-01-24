@@ -20,6 +20,8 @@ class CommentsController extends Controller
         $comment->user_id = Auth::id();
         $article->comments()->save($comment);
 
+        session()->flash('success', 'comment added succesfully');
+
         return back();
     }
 
@@ -29,8 +31,10 @@ class CommentsController extends Controller
 
     public function update(Request $request, Comment $comment) {
     	$this->validate($request, ['body' => 'required|max:1000']);
-    	
+
         $comment->update($request->all());
+
+        session()->flash('success', 'comment edited succesfully');
 
         return back();
     }
