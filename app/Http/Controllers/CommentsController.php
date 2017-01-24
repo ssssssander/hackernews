@@ -28,6 +28,8 @@ class CommentsController extends Controller
     }
 
     public function update(Request $request, Comment $comment) {
+    	$this->validate($request, ['body' => 'required|max:1000']);
+    	
         $comment->update($request->all());
 
         return back();

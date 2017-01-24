@@ -3,14 +3,14 @@
 @section('content')
     <div class="col-md-10 col-md-offset-1">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}">← back to overview</a>
+            <a href="{{ route('index') }}">← back to overview</a>
         </div>
         @include('errors')
         <div class="panel panel-default">
             <div class="panel-heading">Add article</div>
             <div class="panel-content">
                 <!-- New Task Form -->
-                <form action="{{ url('/article/add') }}" class="form-horizontal" method="post">
+                <form action="{{ route('store_article') }}" class="form-horizontal" method="post">
                     {{ csrf_field() }}
                     <!-- Article data -->
                     <div class="form-group">

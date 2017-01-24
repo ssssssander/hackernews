@@ -130,17 +130,17 @@
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                  <button class="navbar-toggle collapsed" data-target="#app-navbar-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle Navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <!-- Branding Image -->
-                 <a class="navbar-brand" href="http://pascalculator.be/hackernews/public">Hackernews.local</a>
+                 <a class="navbar-brand" href="{{ route('index') }}">Hackernews.local</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ route('index') }}">Home</a>
                     </li>
                     @unless (Auth::guest())
                         <li>
-                            <a href="{{ url('/article/add') }}">Add article</a>
+                            <a href="{{ route('add_article') }}">Add article</a>
                         </li>
                     @endunless
                 </ul><!-- Right Side Of Navbar -->

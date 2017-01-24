@@ -42,6 +42,8 @@ class ArticlesController extends Controller
     }
 
     public function update(Request $request, Article $article) {
+        $this->validate($request, ['title' => 'required|max:255', 'url' => 'required|max:1000|active_url']);
+        
         $article->update($request->all());
 
         return redirect('/');

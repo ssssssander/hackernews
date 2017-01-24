@@ -3,25 +3,25 @@
 @section('content')
     <div class="col-md-10 col-md-offset-1">
         <div class="breadcrumb">
-            <a href="/comments/{{ $comment->article_id }}">← back to comments</a>
+            <a href="{{ route('show_article', ['article' => $article->id]) }}">← back to comments</a>
         </div>
         @include('errors')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment
-            <a class="btn btn-danger btn-xs edit-btn pull-right" href="/comments/delete/{{ $comment->id }}">
+            <a class="btn btn-danger btn-xs edit-btn pull-right" href="#">
                 <i class="fa fa-btn fa-trash" title="delete"></i> delete comment
             </a>
             </div>
             <!-- New Task Form -->
             <div class="panel-content">
-                <form action="/comments/edit/{{ $comment->id }}" class="form-horizontal" method="post">
+                <form action="{{ route('update_comment', ['comment' => $comment->id]) }}" class="form-horizontal" method="post">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     <!-- Article data -->
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="body">Comment</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control" id="body" name="body">{{ $comment->body }}</textarea>
+                            <textarea class="form-control" id="body" name="body" maxlength="1000">{{ $comment->body }}</textarea>
                         </div>
                     </div>
                     <!-- Add Article Button -->
