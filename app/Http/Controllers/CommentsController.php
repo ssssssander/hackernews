@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Article;
 use App\Comment;
+use App\Http\Requests\StoreCommentRequest;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -13,9 +14,7 @@ class CommentsController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request, Article $article) {
-        $this->validate($request, ['body' => 'required|max:1000']);
-
+    public function store(StoreCommentRequest $request, Article $article) {
         $comment = new Comment($request->all());
         $comment->user_id = Auth::id();
         $article->comments()->save($comment);

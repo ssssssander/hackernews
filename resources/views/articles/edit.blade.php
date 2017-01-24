@@ -35,7 +35,7 @@
                     <!-- Add Article Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o"></i> Edit Article</button>
+                            <button class="btn btn-default" type="submit"><i class="fa fa-pencil-square-o"></i> Edit article</button>
                         </div>
                     </div>
                 </form>

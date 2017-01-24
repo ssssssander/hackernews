@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Article;
+use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -26,9 +27,7 @@ class ArticlesController extends Controller
         return view('articles.add');
     }
 
-    public function store(Request $request) {
-        $this->validate($request, ['title' => 'required|max:255', 'url' => 'required|max:1000|active_url']);
-
+    public function store(StoreArticleRequest $request) {
         $article = new Article($request->all());
         $article->user_id = Auth::id();
         $article->points = 0;
