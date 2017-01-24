@@ -25,9 +25,9 @@
 </div>
 <div class="url">
     <a class="urlTitle" href="{{ url($article->url) }}">{{ $article->title }}</a>
-    @unless (Auth::guest())
+    @if ($article->user_id == Auth::id())
         <a href="{{ route('edit_article', ['article' => $article->id]) }}" class="btn btn-primary btn-xs edit-btn">edit</a>
-    @endunless
+    @endif
 </div>
 <div class="info">
     {{ $article->points }}
