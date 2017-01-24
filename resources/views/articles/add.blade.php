@@ -16,14 +16,16 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="article-title">Title (max. 255 characters)</label>
                         <div class="col-sm-6">
-                            <input class="form-control" id="article-title" name="title" type="text" maxlength="255">
+                            <input class="form-control" id="article-title" name="title" type="text" maxlength="255"
+                            value="{{ old('title') }}">
                         </div>
                     </div>
                     <!-- Article url -->
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="article-url">URL</label>
                         <div class="col-sm-6">
-                            <input class="form-control" id="article-url" name="url" type="text" maxlength="1000">
+                            <input class="form-control" id="article-url" name="url" type="text" maxlength="1000"
+                            value="{{ old('url') }}">
                         </div>
                     </div>
                     <!-- Add Article Button -->

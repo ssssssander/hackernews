@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-10 col-md-offset-1">
         <div class="breadcrumb">
-            <a href="{{ route('show_article', ['article' => $article->id]) }}">← back to comments</a>
+            <a href="{{ route('show_article', ['article' => $comment->article_id]) }}">← back to comments</a>
         </div>
         @include('errors')
         <div class="panel panel-default">
