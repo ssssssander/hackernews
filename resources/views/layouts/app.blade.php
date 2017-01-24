@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Hackernews.local</title><!-- Fonts -->
+    <title>{{ config('app.name') }}</title><!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet"><!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -130,7 +130,7 @@
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                  <button class="navbar-toggle collapsed" data-target="#app-navbar-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle Navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <!-- Branding Image -->
-                 <a class="navbar-brand" href="{{ route('index') }}">Hackernews.local</a>
+                 <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
@@ -160,6 +160,7 @@
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-btn fa-sign-out"></i>
                                         Logout
                                     </a>
 
