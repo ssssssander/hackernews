@@ -34,7 +34,7 @@ class ArticlesController extends Controller
         $article->points = 0;
         $article->save();
 
-        return redirect('/');
+        return redirect()->route('index');
     }
 
     public function edit(Article $article) {
@@ -46,7 +46,7 @@ class ArticlesController extends Controller
         
         $article->update($request->all());
 
-        return redirect('/');
+        return redirect()->route('index');
     }
 
     public function upvote(Article $article) {
