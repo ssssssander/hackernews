@@ -3,11 +3,12 @@
 @section('content')
     <div class="col-md-10 col-md-offset-1">
         <div class="breadcrumb">
-            <a href="/">← back to overview</a>
+            <a href="{{ url('/') }}">← back to overview</a>
         </div>
+        @include('errors')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit article
-            <a class="btn btn-danger btn-xs pull-right" href="/article/delete/{{ $article->id }}">
+            <a class="btn btn-danger btn-xs pull-right" href="{{ url('/article/delete/{{ $article->id }}') }}">
                 <i class="fa fa-btn fa-trash" title="delete"></i> delete article
             </a>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Article;
 use App\Comment;
 use Illuminate\Http\Request;
@@ -13,12 +14,10 @@ class CommentsController extends Controller
     }
 
     public function store(Request $request, Article $article) {
-        // $article->comments()->create($request->all());
         $this->validate($request, ['body' => 'required|max:1000']);
 
-        $comment = new Comment;
+        $comment = new Comment($request->all());
         $comment->user_id = Auth::id();
-        $comment->body = $request->body;
         $article->comments()->save($comment);
 
         return back();

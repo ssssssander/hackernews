@@ -5,6 +5,7 @@
         <div class="breadcrumb">
             <a href="/">← back to overview</a>
         </div>
+        @include('errors')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">{{ $article->title }}
                 <a href="/article/delete/{{ $article->id }}" class="btn btn-danger btn-xs pull-right">

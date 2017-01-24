@@ -5,6 +5,7 @@
         <div class="breadcrumb">
             <a href="/comments/{{ $comment->article_id }}">← back to comments</a>
         </div>
+        @include('errors')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment
             <a class="btn btn-danger btn-xs edit-btn pull-right" href="/comments/delete/{{ $comment->id }}">

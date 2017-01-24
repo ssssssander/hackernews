@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Article;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class ArticlesController extends Controller
     }
 
     public function store(Request $request) {
-        $article = new Article($request-all());
+        $this->validate($request, ['title' => 'required|max:255', 'url' => 'required|max:1000|active_url']);
+
+        $article = new Article($request->all());
         $article->user_id = Auth::id();
         $article->points = 0;
         $article->save();
@@ -42,17 +45,6 @@ class ArticlesController extends Controller
         $article->update($request->all());
 
         return redirect('/');
-    }
-
-    public function delete() {
-
-        return redirect('/');
-    }
-
-    public function destroy(Article $article) {
-        $article->delete();
-
-        return back();
     }
 
     public function upvote(Article $article) {

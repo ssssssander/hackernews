@@ -25,7 +25,7 @@
     @else
         points
     @endif
-    | posted by {{ $article->user->username }} |
+    | posted by {{ $article->user->name }} |
     @if ($template == 'index')<a href="/comments/{{ $article->id }}">@endif
         {{ $article->comments->count() }}
         @if ($article->comments->count() == 1)
