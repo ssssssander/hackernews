@@ -53,7 +53,7 @@ class ArticlesController extends Controller
     public function update(ArticleRequest $request, Article $article) {
         if($article->user_id == Auth::id()) {
             $article->update($request->all());
-            session()->flash('success', trans('messages.article_success', ['action' => 'edited', 'title' => $aticle->title]));
+            session()->flash('success', trans('messages.article_success', ['action' => 'edited', 'title' => $article->title]));
         }
         else {
             session()->flash('danger', trans('messages.denied', ['action' => 'edit', 'item' => 'an article']));
