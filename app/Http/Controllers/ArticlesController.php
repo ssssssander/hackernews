@@ -61,6 +61,35 @@ class ArticlesController extends Controller
         return redirect()->route('index');
     }
 
+    public function delete(Article $article) {
+        if($article->user_id == Auth::id()) {
+            session()->flash('delete_confirmation', 'are you sure you want to delete this article?');
+
+            return back();
+        }
+        else {
+            session()->flash('danger', 'you can\'t delete an article that is not yours');
+
+            return redirect()->route('index');
+        }
+    }
+
+    public function destroy(Article $article) {
+        if($article->user_id == Auth::id()) {
+            $article->delete();
+            $article->comments()->delete();
+        }
+        else {
+            session()->flash('danger', 'you can\'t delete an article that is not yours');
+        }
+
+        return redirect()->route('index');
+    }
+
+    public function cancel_delete() {
+        return back();
+    }
+
     public function upvote(Article $article) {
         $article->increment('points');
 

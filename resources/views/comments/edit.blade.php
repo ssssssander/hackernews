@@ -5,7 +5,7 @@
         <div class="breadcrumb">
             <a href="{{ route('show_article', ['article' => $comment->article_id]) }}">← back to comments</a>
         </div>
-        @include('errors')
+        @include('common.errors')
         @include('success')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment

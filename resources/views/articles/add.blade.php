@@ -5,7 +5,7 @@
         <div class="breadcrumb">
             <a href="{{ route('index') }}">← back to overview</a>
         </div>
-        @include('errors')
+        @include('common.errors')
         <div class="panel panel-default">
             <div class="panel-heading">Add article</div>
             <div class="panel-content">

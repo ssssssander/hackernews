@@ -3,6 +3,7 @@
 <!-- Main Content -->
 @section('content')
     <div class="col-md-8 col-md-offset-2">
+        @include('common.errors')
         <div class="panel panel-default">
             <div class="panel-heading">Reset Password</div>
             <div class="panel-body">

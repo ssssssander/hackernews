@@ -5,10 +5,11 @@
         <div class="breadcrumb">
             <a href="{{ route('index') }}">← back to overview</a>
         </div>
-        @include('errors')
+        @include('common.errors')
+        @include('delete_confirmation')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit article
-            <a class="btn btn-danger btn-xs pull-right" href="#">
+            <a class="btn btn-danger btn-xs pull-right" href="{{ route('delete_article', ['article' => $article->id]) }}">
                 <i class="fa fa-btn fa-trash" title="delete"></i> delete article
             </a>
             </div>

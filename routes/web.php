@@ -20,6 +20,10 @@ Route::post('article/add', 'ArticlesController@store')->name('store_article');
 Route::get('article/edit/{article}', 'ArticlesController@edit')->name('edit_article');
 Route::patch('article/edit/{article}', 'ArticlesController@update')->name('update_article');
 
+Route::get('article/delete/{article}', 'ArticlesController@delete')->name('delete_article');
+Route::delete('article/delete/{article}', 'ArticlesController@destroy')->name('destroy_article');
+Route::post('/', 'ArticlesController@cancel_delete')->name('cancel_delete_article');
+
 Route::patch('vote/up/{article}', 'ArticlesController@upvote')->name('upvote_article');
 Route::patch('vote/down/{article}', 'ArticlesController@downvote')->name('downvote_article');
 
