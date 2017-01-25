@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Article;
 use App\Comment;
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -15,7 +14,7 @@ class CommentsController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(StoreCommentRequest $request, Article $article) {
+    public function store(CommentRequest $request, Article $article) {
         $comment = new Comment($request->all());
         $comment->user_id = Auth::id();
         $article->comments()->save($comment);
@@ -26,14 +25,27 @@ class CommentsController extends Controller
     }
 
     public function edit(Comment $comment) {
-        return view('comments.edit', compact('comment'));
+        if($comment->user_id == Auth::id()) {
+            return view('comments.edit', compact('comment'));
+        }
+        else {
+            session()->flash('danger', 'you can\'t edit a comment that is not yours');
+
+            return redirect()->route('index');
+        }
     }
 
-    public function update(UpdateCommentRequest $request, Comment $comment) {
-        $comment->update($request->all());
+    public function update(CommentRequest $request, Comment $comment) {
+        if($comment->user_id == Auth::id()) {
+            $comment->update($request->all());
+            session()->flash('success', 'comment edited succesfully');
 
-        session()->flash('success', 'comment edited succesfully');
+            return back();
+        }
+        else {
+            session()->flash('danger', 'you can\'t edit a comment that is not yours');
 
-        return back();
+            return redirect()->route('index');
+        }
     }
 }

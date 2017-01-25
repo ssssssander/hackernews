@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\StoreCommentRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCommentRequest extends StoreCommentRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +23,8 @@ class UpdateCommentRequest extends StoreCommentRequest
      */
     public function rules()
     {
-        return parent::rules();
+        return [
+            'body' => 'required|max:1000'
+        ];
     }
 }
