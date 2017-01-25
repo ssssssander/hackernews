@@ -20,23 +20,29 @@
             <div class="panel-content">
                 @include('articles.single', ['template' => 'show'])
                 <div class="comments">
-                    <ul>
-                        @foreach ($article->comments->reverse() as $comment)
-                            <li>
-                                <div class="comment-body">{{ $comment->body }}</div>
-                                <div class="comment-info">Posted by {{ $comment->user->name }} on {{ $comment->created_at }}
-                                    @if ($comment->user_id == Auth::id())
-                                        <a class="btn btn-primary btn-xs edit-btn"
-                                        href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
-                                        <a class="btn btn-danger btn-xs edit-btn"
-                                        href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
-                                            <i class="fa fa-btn fa-trash" title="delete"></i>delete
-                                        </a>
-                                    @endif
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @if ($article->comments->count() > 0)
+                        <ul>
+                            @foreach ($article->comments->reverse() as $comment)
+                                <li>
+                                    <div class="comment-body">{{ $comment->body }}</div>
+                                    <div class="comment-info">Posted by {{ $comment->user->name }} on {{ $comment->created_at }}
+                                        @if ($comment->user_id == Auth::id())
+                                            <a class="btn btn-primary btn-xs edit-btn"
+                                            href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
+                                            <a class="btn btn-danger btn-xs edit-btn"
+                                            href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
+                                                <i class="fa fa-btn fa-trash" title="delete"></i>delete
+                                            </a>
+                                        @endif
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <div>
+                            <p>No comments yet</p>
+                        </div>
+                    @endif
                 </div>
                 @if (Auth::guest())
                     <div>
