@@ -19,7 +19,7 @@ class CommentsController extends Controller
         $comment->user_id = Auth::id();
         $article->comments()->save($comment);
 
-        session()->flash('success', 'comment added succesfully');
+        session()->flash('success', trans('messages.comment_success', ['action' => 'added']));
 
         return back();
     }
@@ -29,7 +29,7 @@ class CommentsController extends Controller
             return view('comments.edit', compact('comment'));
         }
         else {
-            session()->flash('danger', 'you can\'t edit a comment that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'edit', 'item' => 'a comment']));
 
             return redirect()->route('index');
         }
@@ -38,12 +38,12 @@ class CommentsController extends Controller
     public function update(CommentRequest $request, Comment $comment) {
         if($comment->user_id == Auth::id()) {
             $comment->update($request->all());
-            session()->flash('success', 'comment edited succesfully');
+            session()->flash('success', trans('messages.comment_success', ['action' => 'edited']));
 
             return back();
         }
         else {
-            session()->flash('danger', 'you can\'t edit a comment that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'edit', 'item' => 'a comment']));
 
             return redirect()->route('index');
         }
@@ -51,13 +51,13 @@ class CommentsController extends Controller
 
     public function delete(Comment $comment) {
         if($comment->user_id == Auth::id()) {
-            session()->flash('delete_comment_confirmation', 'are you sure you want to delete this comment?');
+            session()->flash('delete_comment_confirmation', trans('messages.confirmation', ['item' => 'comment']));
             session()->flash('comment', $comment);
 
             return back();
         }
         else {
-            session()->flash('danger', 'you can\'t delete a comment that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'delete', 'item' => 'a comment']));
 
             return redirect()->route('index');
         }
@@ -66,12 +66,12 @@ class CommentsController extends Controller
     public function destroy(Comment $comment) {
         if($comment->user_id == Auth::id()) {
             $comment->delete();
-            session()->flash('success', 'comment deleted succesfully');
+            session()->flash('success', trans('messages.comment_success', ['action' => 'deleted']));
 
             return redirect()->route('show_article', $comment->article_id);
         }
         else {
-            session()->flash('danger', 'you can\'t delete a comment that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'delete', 'item' => 'a comment']));
 
             return redirect()->route('index');
         }

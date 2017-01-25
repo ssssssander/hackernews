@@ -29,20 +29,11 @@
         <a href="{{ route('edit_article', ['article' => $article->id]) }}" class="btn btn-primary btn-xs edit-btn">edit</a>
     @endif
 </div>
-<div class="info">
-    {{ $article->points }}
-    @if ($article->points == 1)
-        point
-    @else
-        points
-    @endif
+<div class="info">{{ $article->points }}
+{{ trans_choice('plural.points', $article->points) }}
     | posted by {{ $article->user->name }} |
     @if ($template == 'index')<a href="{{ route('show_article', ['article' => $article->id]) }}">@endif
         {{ $article->comments->count() }}
-        @if ($article->comments->count() == 1)
-            comment
-        @else
-            comments
-        @endif
+        {{ trans_choice('plural.comments', $article->comments->count()) }}
     @if ($template == 'index')</a>@endif
 </div>

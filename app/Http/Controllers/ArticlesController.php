@@ -34,7 +34,7 @@ class ArticlesController extends Controller
         $article->points = 0;
         $article->save();
 
-        session()->flash('success', 'article "' . $article->title . '" created succesfully');
+        session()->flash('success', trans('messages.article_success', ['action' => 'created', 'title' => $article->title]));
 
         return redirect()->route('index');
     }
@@ -44,7 +44,7 @@ class ArticlesController extends Controller
             return view('articles.edit', compact('article'));
         }
         else {
-            session()->flash('danger', 'you can\'t edit an article that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'edit', 'item' => 'an article']));
 
             return redirect()->route('index');
         }
@@ -53,10 +53,10 @@ class ArticlesController extends Controller
     public function update(ArticleRequest $request, Article $article) {
         if($article->user_id == Auth::id()) {
             $article->update($request->all());
-            session()->flash('success', 'article "' . $article->title . '" edited succesfully');
+            session()->flash('success', trans('messages.article_success', ['action' => 'edited', 'title' => $aticle->title]));
         }
         else {
-            session()->flash('danger', 'you can\'t edit an article that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'edit', 'item' => 'an article']));
         }
 
         return redirect()->route('index');
@@ -64,12 +64,12 @@ class ArticlesController extends Controller
 
     public function delete(Article $article) {
         if($article->user_id == Auth::id()) {
-            session()->flash('delete_article_confirmation', 'are you sure you want to delete this article?');
+            session()->flash('delete_article_confirmation', trans('messages.confirmation', ['item' => 'article']));
 
             return back();
         }
         else {
-            session()->flash('danger', 'you can\'t delete an article that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'delete', 'item' => 'an article']));
 
             return redirect()->route('index');
         }
@@ -79,10 +79,10 @@ class ArticlesController extends Controller
         if($article->user_id == Auth::id()) {
             $article->delete();
             $article->comments()->delete();
-            session()->flash('success', 'article "' . $article->title . '" deleted succesfully');
+            session()->flash('success', trans('messages.article_success', ['action' => 'deleted', 'title' => $article->title]));
         }
         else {
-            session()->flash('danger', 'you can\'t delete an article that is not yours');
+            session()->flash('danger', trans('messages.denied', ['action' => 'delete', 'item' => 'an article']));
         }
 
         return redirect()->route('index');
