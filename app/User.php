@@ -27,11 +27,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = ['created_at'; 'updated_at'];
+
     public function articles() {
         return $this->hasMany(Article::class);
     }
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function votes() {
+        return $this->hasMany(Vote::class);
     }
 }
