@@ -7,6 +7,7 @@
         </div>
         @include('common.errors')
         @include('success')
+        @include('delete_confirmation')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment
             <a class="btn btn-danger btn-xs edit-btn pull-right" href="{{ route('delete_comment', ['comment' => $comment->id]) }}">

@@ -68,7 +68,7 @@ class CommentsController extends Controller
             $comment->delete();
             session()->flash('success', 'comment deleted succesfully');
 
-            return back();
+            return redirect()->route('show_article', $comment->article_id);
         }
         else {
             session()->flash('danger', 'you can\'t delete a comment that is not yours');
