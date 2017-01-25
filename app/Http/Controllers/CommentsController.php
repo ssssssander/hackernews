@@ -48,4 +48,32 @@ class CommentsController extends Controller
             return redirect()->route('index');
         }
     }
+
+    public function delete(Comment $comment) {
+        if($comment->user_id == Auth::id()) {
+            session()->flash('delete_comment_confirmation', 'are you sure you want to delete this comment?');
+            session()->flash('comment', $comment);
+
+            return back();
+        }
+        else {
+            session()->flash('danger', 'you can\'t delete a comment that is not yours');
+
+            return redirect()->route('index');
+        }
+    }
+
+    public function destroy(Comment $comment) {
+        if($comment->user_id == Auth::id()) {
+            $comment->delete();
+            session()->flash('success', 'comment deleted succesfully');
+
+            return back();
+        }
+        else {
+            session()->flash('danger', 'you can\'t delete a comment that is not yours');
+
+            return redirect()->route('index');
+        }
+    }
 }

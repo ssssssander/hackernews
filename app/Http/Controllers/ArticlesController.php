@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Article;
+use App\Vote;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
@@ -63,7 +64,7 @@ class ArticlesController extends Controller
 
     public function delete(Article $article) {
         if($article->user_id == Auth::id()) {
-            session()->flash('delete_confirmation', 'are you sure you want to delete this article?');
+            session()->flash('delete_article_confirmation', 'are you sure you want to delete this article?');
 
             return back();
         }
@@ -78,6 +79,7 @@ class ArticlesController extends Controller
         if($article->user_id == Auth::id()) {
             $article->delete();
             $article->comments()->delete();
+            session()->flash('success', 'article "' . $article->title . '" deleted succesfully');
         }
         else {
             session()->flash('danger', 'you can\'t delete an article that is not yours');
@@ -92,12 +94,23 @@ class ArticlesController extends Controller
 
     public function upvote(Article $article) {
         $article->increment('points');
+        $vote = new Vote;
+        $vote->user_id = Auth::id();
+        $vote->article_id = $article->id;
+        $vote->type = "up";
+        $vote->save();
 
         return back();
     }
 
     public function downvote(Article $article) {
         $article->decrement('points');
+        $vote = new Vote;
+        $vote->user_id = Auth::id();
+        $vote->article_id = $article->id;
+        $vote->type = "down";
+
+        $vote->save();
 
         return back();
     }

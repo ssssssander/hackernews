@@ -22,7 +22,6 @@ Route::patch('article/edit/{article}', 'ArticlesController@update')->name('updat
 
 Route::get('article/delete/{article}', 'ArticlesController@delete')->name('delete_article');
 Route::delete('article/delete/{article}', 'ArticlesController@destroy')->name('destroy_article');
-Route::post('/', 'ArticlesController@cancel_delete')->name('cancel_delete_article');
 
 Route::patch('vote/up/{article}', 'ArticlesController@upvote')->name('upvote_article');
 Route::patch('vote/down/{article}', 'ArticlesController@downvote')->name('downvote_article');
@@ -31,5 +30,10 @@ Route::post('comments/add/{article}', 'CommentsController@store')->name('store_c
 
 Route::get('comments/edit/{comment}', 'CommentsController@edit')->name('edit_comment');
 Route::patch('comments/edit/{comment}', 'CommentsController@update')->name('update_comment');
+
+Route::get('comments/delete/{comment}', 'CommentsController@delete')->name('delete_comment');
+Route::delete('comments/delete/{comment}', 'CommentsController@destroy')->name('destroy_comment');
+
+Route::post('/', 'ArticlesController@cancel_delete')->name('cancel_delete');
 
 Auth::routes();

@@ -28,7 +28,8 @@
                                     @if ($comment->user_id == Auth::id())
                                         <a class="btn btn-primary btn-xs edit-btn"
                                         href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
-                                        <a class="btn btn-danger btn-xs edit-btn" href="#">
+                                        <a class="btn btn-danger btn-xs edit-btn"
+                                        href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
                                             <i class="fa fa-btn fa-trash" title="delete"></i>delete
                                         </a>
                                     @endif

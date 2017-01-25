@@ -9,7 +9,7 @@
         @include('success')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">Edit comment
-            <a class="btn btn-danger btn-xs edit-btn pull-right" href="#">
+            <a class="btn btn-danger btn-xs edit-btn pull-right" href="{{ route('delete_comment', ['comment' => $comment->id]) }}">
                 <i class="fa fa-btn fa-trash" title="delete"></i> delete comment
             </a>
             </div>
