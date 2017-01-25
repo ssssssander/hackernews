@@ -100,6 +100,8 @@ class ArticlesController extends Controller
         $vote->type = "up";
         $vote->save();
 
+        session()->flash('success', trans('messages.voted', ['action' => 'upvoted', 'title' => $article->title]));
+
         return back();
     }
 
@@ -109,8 +111,9 @@ class ArticlesController extends Controller
         $vote->user_id = Auth::id();
         $vote->article_id = $article->id;
         $vote->type = "down";
-
         $vote->save();
+
+        session()->flash('success', trans('messages.voted', ['action' => 'downvoted', 'title' => $article->title]));
 
         return back();
     }

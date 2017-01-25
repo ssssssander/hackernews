@@ -10,7 +10,7 @@
         @include('danger')
         @include('delete_confirmation')
         <div class="panel panel-default">
-            <div class="panel-heading clearfix">{{ $article->title }}
+            <div class="panel-heading clearfix">Article: {{ $article->title }}
             @if ($article->user_id == Auth::id())
                 <a href="{{ route('delete_article', ['article' => $article->id]) }}" class="btn btn-danger btn-xs pull-right">
                     <i class="fa fa-btn fa-trash" title="delete"></i> delete article
