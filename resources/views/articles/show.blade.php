@@ -9,27 +9,27 @@
         @include('success')
         <div class="panel panel-default">
             <div class="panel-heading clearfix">{{ $article->title }}
-            @unless (Auth::guest())
+            @if ($article->user_id == Auth::id())
                 <a href="#" class="btn btn-danger btn-xs pull-right">
                     <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                 </a>
-            @endunless
+            @endif
             </div>
             <div class="panel-content">
                 @include('articles.single', ['template' => 'show'])
                 <div class="comments">
                     <ul>
-                        @foreach ($article->comments as $comment)
+                        @foreach ($article->comments->reverse() as $comment)
                             <li>
                                 <div class="comment-body">{{ $comment->body }}</div>
                                 <div class="comment-info">Posted by {{ $comment->user->name }} on {{ $comment->created_at }}
-                                    @unless (Auth::guest())
+                                    @if ($comment->user_id == Auth::id())
                                         <a class="btn btn-primary btn-xs edit-btn"
                                         href="{{ route('edit_comment', ['comment' => $comment->id]) }}">edit</a>
                                         <a class="btn btn-danger btn-xs edit-btn" href="#">
                                             <i class="fa fa-btn fa-trash" title="delete"></i>delete
                                         </a>
-                                    @endunless
+                                    @endif
                                 </div>
                             </li>
                         @endforeach

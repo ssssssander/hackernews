@@ -6,6 +6,7 @@ use Auth;
 use App\Article;
 use App\Comment;
 use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -28,9 +29,7 @@ class CommentsController extends Controller
         return view('comments.edit', compact('comment'));
     }
 
-    public function update(Request $request, Comment $comment) {
-    	$this->validate($request, ['body' => 'required|max:1000']);
-
+    public function update(UpdateCommentRequest $request, Comment $comment) {
         $comment->update($request->all());
 
         session()->flash('success', 'comment edited succesfully');

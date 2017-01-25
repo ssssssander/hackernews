@@ -17,7 +17,6 @@
                 <form action="{{ route('update_article', ['article' => $article->id]) }}" class="form-horizontal" method="post">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
-                    <input id="article-points" name="points" type="hidden" value="1">
                     <!-- Article data -->
                     <div class="form-group">
                         <label class="col-sm-3 control-label" for="article-title">Title (max. 255 characters)</label>

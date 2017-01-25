@@ -1,8 +1,8 @@
 <div class="vote">
-    @if (Auth::guest())     
+    @if (Auth::guest())
         <div class="form-inline upvote">
             <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to upvote"></i>
-        </div>                   
+        </div>
         <div class="form-inline upvote">
             <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i>
         </div>
